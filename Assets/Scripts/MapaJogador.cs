@@ -117,7 +117,7 @@ public partial class @MapaJogador: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""9d68e257-7ddb-4fa3-adf1-c49228199362"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -128,7 +128,7 @@ public partial class @MapaJogador: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""down"",
                     ""id"": ""1c5411ce-a9e7-4521-80d7-a60b1f29b6b3"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

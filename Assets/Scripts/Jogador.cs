@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Jogador : MonoBehaviour
 {
@@ -15,11 +16,20 @@ public class Jogador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rig.linearVelocity = new Vector2(direcao.x * velocidade, 0);
+        rig.linearVelocity = direcao * velocidade;
     }
 
     public void OnMove(InputAction.CallbackContext input)
     {
         direcao = input.ReadValue<Vector2>();
+    }
+
+    void OnTriggerEnter2D(Collider2D obj)
+    {
+        if(obj.gameObject.tag == "Finish")
+        {
+            Debug.Log("Fase concluída!");
+            SceneManager.LoadScene("fase1");
+        }
     }
 }

@@ -31,5 +31,9 @@ public class Jogador : MonoBehaviour
             Debug.Log("Fase concluída!");
             SceneManager.LoadScene("fase1");
         }
+        if(obj.gameObject.tag == "orbe")
+        {
+            Destroy(obj.gameObject);
+        }
     }
 }

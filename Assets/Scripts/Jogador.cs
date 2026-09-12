@@ -33,11 +33,11 @@ public class Jogador : MonoBehaviour
     {
         if(obj.gameObject.tag == "Finish")
         {
-            Debug.Log("Fase concluída!");
-            SceneManager.LoadScene("fase1");
+            GameManager.instancia.TrocarDeFase();
         }
         if(obj.gameObject.tag == "orbe")
         {
+            GameManager.instancia.ColetarOrbe();
             Destroy(obj.gameObject);
         }
     }

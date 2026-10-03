@@ -1,11 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instancia {private set; get;}
     public int orbesColetadas;
     private int fase_atual = 0;
+    [SerializeField] private Text titulo;
     [SerializeField] private List<Fase> fases;
     void Awake()
     {
@@ -32,5 +34,15 @@ public class GameManager : MonoBehaviour
             SceneManager.LoadScene(fases[fase_atual].nome);
             orbesColetadas=0;
         }
+    }
+
+    public void Demonstracao()
+    {
+        if(titulo.text == "CLICADO!")
+        {
+            titulo.gameObject.SetActive(false);
+        }
+        Debug.Log("Olá, estou funcionando!!!");
+        titulo.text = "CLICADO!";
     }
 }

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public int orbesColetadas;
     private int fase_atual = 0;
     [SerializeField] private Text titulo;
+    [SerializeField] private GameObject menuOpcoes;
     [SerializeField] private List<Fase> fases;
     void Awake()
     {
@@ -21,6 +22,12 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
     }
+    
+    void Start()
+    {
+        menuOpcoes.SetActive(false);
+    }
+
     public void ColetarOrbe()
     {
         orbesColetadas++;
@@ -44,5 +51,28 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log("Olá, estou funcionando!!!");
         titulo.text = "CLICADO!";
+    }
+
+    public void IniciarJogo()
+    {
+        fase_atual = 1;
+        SceneManager.LoadScene("fase2");
+    }
+
+    public void MenuOpcoes()
+    {
+        if (menuOpcoes.activeSelf)
+        {
+            menuOpcoes.SetActive(false);
+        }
+        else
+        {
+            menuOpcoes.SetActive(true);
+        }
+    }
+
+    public void SairDoJogo(){
+        Debug.Log("O jogo está sendo encerrado!");
+        Application.Quit();
     }
 }

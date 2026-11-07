@@ -12,6 +12,17 @@ public class Esqueleto : MonoBehaviour
         
     }
 
+    public void Dano()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
+        Invoke("normalizar", 0.5f);
+    }
+
+    void normalizar()
+    {
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+    }
+
     // Update is called once per frame
     void Update()
     {

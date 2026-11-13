@@ -8,8 +8,11 @@ public class GameManager : MonoBehaviour
     public int orbesColetadas;
     private int fase_atual = 0;
     [SerializeField] private Text titulo;
+    [SerializeField] private GameObject menu;
     [SerializeField] private GameObject menuOpcoes;
     [SerializeField] private List<Fase> fases;
+    [Header("Configuração Inimigo")]
+    [SerializeField] private GameObject EsqueletoPrefab;
     void Awake()
     {
         if(instancia != null && instancia != this)
@@ -40,6 +43,17 @@ public class GameManager : MonoBehaviour
             fase_atual++;
             SceneManager.LoadScene(fases[fase_atual].nome);
             orbesColetadas=0;
+            Invoke("ColocarEsqueletos", 1f);
+            // ColocarEsqueletos();
+        }
+    }
+
+    void ColocarEsqueletos()
+    {
+        Fase fase = fases[fase_atual];
+        for(int i=0; i < fase.meta_orbes; i++)
+        {
+            Instantiate(EsqueletoPrefab, fase.spawn, Quaternion.identity);
         }
     }
 
@@ -55,8 +69,9 @@ public class GameManager : MonoBehaviour
 
     public void IniciarJogo()
     {
-        fase_atual = 1;
-        SceneManager.LoadScene("fase2");
+        menu.SetActive(false);
+        menuOpcoes.SetActive(false);
+        ColocarEsqueletos();
     }
 
     public void MenuOpcoes()

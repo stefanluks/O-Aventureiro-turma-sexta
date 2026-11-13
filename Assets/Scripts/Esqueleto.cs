@@ -1,12 +1,16 @@
 using UnityEngine;
+using UnityEngine.Splines.ExtrusionShapes;
 
 public class Esqueleto : MonoBehaviour
 {
     private int modo = 0; //0 -> Aleatorio | 1 -> Seguir
+    [SerializeField] private GameObject OrbePrefab;
     [SerializeField] private int velocidade;
     [SerializeField] private int distancia;
+    [SerializeField] private int vida = 3;
     private Vector2 destino;
     private Transform jogador;
+    private bool estaVivo = true;
     void Start()
     {
         
@@ -16,6 +20,7 @@ public class Esqueleto : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
         Invoke("normalizar", 0.5f);
+        vida--;
     }
 
     void normalizar()
@@ -26,6 +31,13 @@ public class Esqueleto : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(vida <= 0 && estaVivo)
+        {
+            estaVivo = false;
+            Animator animador = GetComponent<Animator>();
+            animador.SetBool("die", true);
+        }
+        
         if(modo == 0)
         {
             transform.position = Vector2.MoveTowards(
@@ -48,6 +60,12 @@ public class Esqueleto : MonoBehaviour
                 velocidade * Time.deltaTime
             );
         }
+    }
+
+    public void DestruirEsqueleto()
+    {
+        GameObject orbe = Instantiate(OrbePrefab, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 
     void NovaPosicao()
